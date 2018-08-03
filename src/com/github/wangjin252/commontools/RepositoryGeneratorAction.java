@@ -27,9 +27,12 @@ public class RepositoryGeneratorAction extends AnAction {
             if (name.contains(".java")) {
                 try {
                     bufferedReader = new BufferedReader(new FileReader(new File(currnetFilePath)));
-                    // 读取首行包名
-                    String packageName = bufferedReader.readLine();
-
+                    // 读取首行
+                    String firstLine = bufferedReader.readLine();
+                    String packageName = "";
+                    if (firstLine.startsWith("package")) {
+                        packageName = firstLine;
+                    }
 
                     String repositoryFileName = name.substring(0, name.indexOf(".")) + "Repository";
 

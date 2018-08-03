@@ -1,17 +1,15 @@
 <idea-plugin>
-    <id>com.your.company.unique.plugin.id</id>
-    <name>Plugin display name here</name>
+    <id>com.github.wangjin252.commontools</id>
+    <name>Common Tools</name>
     <version>1.0</version>
-    <vendor email="support@yourcompany.com" url="http://www.yourcompany.com">YourCompany</vendor>
+    <vendor email="wangjin-252@hotmail.com" url="https://github.com/wangjin252/common-tools-plugin">Common Tools</vendor>
 
     <description><![CDATA[
-      Enter short description for your plugin here.<br>
-      <em>most HTML tags may be used</em>
+      生成Spring Data Jpa对应Repository类
     ]]></description>
 
     <change-notes><![CDATA[
-      Add change notes here.<br>
-      <em>most HTML tags may be used</em>
+
     ]]>
     </change-notes>
 
