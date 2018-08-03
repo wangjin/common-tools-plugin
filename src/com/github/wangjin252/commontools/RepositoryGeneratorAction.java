@@ -51,6 +51,8 @@ public class RepositoryGeneratorAction extends AnAction {
                     printStream.println();
                     printStream.append("}");
 
+                    // 创建文件后刷新
+                    e.getData(PlatformDataKeys.PROJECT).getBaseDir().refresh(false, true);
 
                 } catch (IOException e1) {
                     e1.printStackTrace();
