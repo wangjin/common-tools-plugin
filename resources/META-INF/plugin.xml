@@ -33,7 +33,13 @@
             <action id="commontools.RepositoryGenerator" class="com.github.wangjin252.commontools.RepositoryGeneratorAction"
                     text="Repository Generator" description="Generator for Spring Data JPA Repository">
             </action>
+            <action id="commontools.CodeGenerator" class="com.github.wangjin252.commontools.CodeGeneratorAction"
+                    text="Generate Code" description="CodeGenerator"/>
+            <action id="commontools.TestGUI" class="com.github.wangjin252.commontools.TestGUIAction" text="Test GUI"
+                    description="Test GUI"/>
         </group>
+
+
     </actions>
 
 </idea-plugin>
