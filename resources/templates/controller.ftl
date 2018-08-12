@@ -41,7 +41,8 @@ public class ${modelName}Controller {
      * @param limit 每页记录数
      * @return PageModel<${modelName}>
      */
-    @PostMapping(value = "/pageData")
+    @GetMapping(value = "/pageData")
+    @ResponseBody
     public PageModel<${modelName}> pageData(int page, int limit) {
         return ${modelName?lower_case}Service.findPage(page, limit);
     }
