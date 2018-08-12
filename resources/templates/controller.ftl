@@ -60,7 +60,7 @@ public class ${modelName}Controller {
     /**
      * 添加
      *
-     * @param ${modelName} entity
+     * @param ${modelName?lower_case} entity
      * @return ResponseEntity<${modelName}>
      */
     @PostMapping
@@ -78,7 +78,7 @@ public class ${modelName}Controller {
     /**
      * 修改
      *
-     * @param ${modelName} entity
+     * @param ${modelName?lower_case} entity
      * @return ResponseEntity<${modelName}>
      */
     @PutMapping
