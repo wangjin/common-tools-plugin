@@ -39,16 +39,16 @@ public class RepositoryGeneratorAction extends AnAction {
                     File file = new File(parentPath + File.separator + repositoryFileName + ".java");
                     printStream = new PrintStream(new FileOutputStream(file));
                     printStream.append(packageName);
-                    printStream.println();
+                    printStream.println("");
                     printStream.append("import org.springframework.stereotype.Repository;");
-                    printStream.println();
+                    printStream.println("");
                     printStream.append("import org.springframework.data.jpa.repository.JpaRepository;");
-                    printStream.println();
+                    printStream.println("");
                     printStream.append("@Repository");
                     printStream.println();
                     printStream.append("public interface ").append(repositoryFileName).append(" extends JpaRepository<").append(name.substring(0, name.indexOf("."))).append(", Integer> {");
-                    printStream.println();
-                    printStream.println();
+                    printStream.println("");
+                    printStream.println("");
                     printStream.append("}");
 
                     // 创建文件后刷新
