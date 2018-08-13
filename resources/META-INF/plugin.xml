@@ -2,7 +2,8 @@
     <id>com.github.wangjin252.commontools</id>
     <name>Common Tools</name>
     <version>1.0</version>
-    <vendor email="wangjin-252@hotmail.com" url="https://github.com/wangjin252/common-tools-plugin">Common Tools</vendor>
+    <vendor email="wangjin-252@hotmail.com" url="https://github.com/wangjin252/common-tools-plugin">Common Tools
+    </vendor>
 
     <description><![CDATA[
       生成Spring Data Jpa对应Repository类
@@ -30,15 +31,21 @@
     <actions>
         <group id="commontools.group" text="Common Tools" popup="true">
             <add-to-group group-id="ProjectViewPopupMenu" relative-to-action="CutCopyPasteGroup" anchor="before"/>
-            <action id="commontools.RepositoryGenerator" class="com.github.wangjin252.commontools.RepositoryGeneratorAction"
+            <action id="commontools.RepositoryGenerator"
+                    class="com.github.wangjin252.commontools.RepositoryGeneratorAction"
                     text="Repository Generator" description="Generator for Spring Data JPA Repository">
             </action>
-            <action id="commontools.CodeGenerator" class="com.github.wangjin252.commontools.CodeGeneratorAction"
-                    text="Generate Code" description="CodeGenerator"/>
-            <action id="commontools.TestGUI" class="com.github.wangjin252.commontools.TestGUIAction" text="Test GUI"
-                    description="Test GUI"/>
         </group>
 
+        <action id="commontools.CodeGenerator" class="com.github.wangjin252.commontools.CodeGeneratorAction"
+                text="Generate Code" description="CodeGenerator">
+            <add-to-group group-id="ToolsMenu" anchor="last"/>
+        </action>
+
+        <action id="commontools.TestGUI" class="com.github.wangjin252.commontools.TestGUIAction" text="Test GUI"
+                description="Test GUI">
+            <add-to-group group-id="ToolsMenu" anchor="last"/>
+        </action>
 
     </actions>
 
