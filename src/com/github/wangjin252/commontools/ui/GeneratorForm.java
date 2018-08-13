@@ -1,23 +1,31 @@
 package com.github.wangjin252.commontools.ui;
 
+import com.github.wangjin252.commontools.entity.Pom;
+
 import javax.swing.*;
 
 public class GeneratorForm extends JFrame {
+
+    private Pom pom;
+
     private JButton generateButton;
     private JPanel mainPanel;
-    private JButton button1;
-    private JTextField textField1;
-    private JTextField controllerTextField;
-    private JTextField serviceTextField;
-    private JTextField domainTextField;
-    private JTextField domainTextField1;
     private JTextField basePackageTextField;
     private JTextField controllerPackageTextField;
     private JTextField servicePackageTextField;
     private JTextField repositoryPackageTextField;
     private JTextField entityPackageTextField;
+    private JTextField dbAddressTextField;
+    private JTextField dbNameTextField;
+    private JTextField dbUserNameTextField;
+    private JTextField dbPasswordTextField;
+    private JList entityList;
+    private JButton parseEntityButton;
+    private JTextField textField1;
 
-    public GeneratorForm() {
+    public GeneratorForm(Pom pom) {
+
+        this.pom = pom;
 
         this.setTitle("生成代码");
         this.setSize(400, 400);
@@ -26,6 +34,16 @@ public class GeneratorForm extends JFrame {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.pack();
         this.setVisible(true);
+
+
+        if (pom != null) {
+            basePackageTextField.setText(pom.getGroupId() + "." + pom.getArtifactId());
+        }
+
+
+        parseEntityButton.addActionListener((e) -> {
+
+        });
 
         generateButton.addActionListener((e) -> {
             System.out.println(basePackageTextField.getText());
@@ -66,5 +84,10 @@ public class GeneratorForm extends JFrame {
 
     public JTextField getEntityPackageTextField() {
         return entityPackageTextField;
+    }
+
+
+    public static void main(String[] args) {
+        new GeneratorForm(null);
     }
 }

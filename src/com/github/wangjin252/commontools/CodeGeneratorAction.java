@@ -16,6 +16,11 @@ public class CodeGeneratorAction extends AnAction {
     @Override
     public void actionPerformed(AnActionEvent e) {
 
+
+        VirtualFile baseDir = e.getData(PlatformDataKeys.PROJECT).getBaseDir();
+
+
+
         VirtualFile virtualFile = e.getData(PlatformDataKeys.VIRTUAL_FILE);
 
         if (virtualFile != null) {
@@ -43,7 +48,7 @@ public class CodeGeneratorAction extends AnAction {
 
 
                 // 创建文件后刷新
-                e.getData(PlatformDataKeys.PROJECT).getBaseDir().refresh(false, true);
+                baseDir.refresh(false, true);
             } catch (Exception e1) {
                 e1.printStackTrace();
             } finally {
