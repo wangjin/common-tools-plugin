@@ -1,4 +1,4 @@
-package com.github.wangjin252.commontools;
+package com.github.wangjin252.commontools.action;
 
 import com.github.wangjin252.commontools.service.GenerateService;
 import com.intellij.openapi.actionSystem.AnAction;
@@ -11,7 +11,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 
-public class CodeGeneratorAction extends AnAction {
+public class OldCodeGeneratorAction extends AnAction {
 
     @Override
     public void actionPerformed(AnActionEvent e) {
