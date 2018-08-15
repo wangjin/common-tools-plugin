@@ -4,9 +4,11 @@
 
 package com.github.wangjin252.commontools.ui;
 
-import java.awt.*;
+import com.github.wangjin252.commontools.entity.DBInfo;
+import net.miginfocom.swing.MigLayout;
+
 import javax.swing.*;
-import net.miginfocom.swing.*;
+import java.awt.*;
 
 /**
  * @author WangJin
@@ -19,7 +21,7 @@ public class DBSettingsForm extends JPanel {
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
         label1 = new JLabel();
-        dbTypeCcomboBox = new JComboBox();
+        dbTypeCcomboBox = new JComboBox<>();
         label2 = new JLabel();
         ipTextField = new JTextField();
         label3 = new JLabel();
@@ -33,22 +35,28 @@ public class DBSettingsForm extends JPanel {
 
         //======== this ========
         setLayout(new MigLayout(
-            "hidemode 3",
-            // columns
-            "[fill]" +
-            "[fill]" +
-            "[fill]",
-            // rows
-            "[]" +
-            "[]" +
-            "[]" +
-            "[]" +
-            "[]" +
-            "[]"));
+                "hidemode 3",
+                // columns
+                "[fill]" +
+                        "[fill]" +
+                        "[fill]",
+                // rows
+                "[]" +
+                        "[]" +
+                        "[]" +
+                        "[]" +
+                        "[]" +
+                        "[]"));
 
         //---- label1 ----
         label1.setText("\u7c7b\u578b");
         add(label1, "cell 0 0,alignx right,growx 0");
+
+        //---- dbTypeCcomboBox ----
+        dbTypeCcomboBox.setModel(new DefaultComboBoxModel<>(new String[]{
+                "MySQL",
+                "Oracle"
+        }));
         add(dbTypeCcomboBox, "cell 1 0");
 
         //---- label2 ----
@@ -80,14 +88,11 @@ public class DBSettingsForm extends JPanel {
         add(passwordTextField, "cell 1 5");
         // JFormDesigner - End of component initialization  //GEN-END:initComponents
 
-
-
-        this.dbTypeCcomboBox.addItem("MySQL");
     }
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables
     private JLabel label1;
-    private JComboBox dbTypeCcomboBox;
+    private JComboBox<String> dbTypeCcomboBox;
     private JLabel label2;
     private JTextField ipTextField;
     private JLabel label3;
@@ -100,5 +105,17 @@ public class DBSettingsForm extends JPanel {
     private JTextField passwordTextField;
     // JFormDesigner - End of variables declaration  //GEN-END:variables
 
+
+    public DBInfo getInputDBInfo() {
+        DBInfo dbInfo = new DBInfo();
+        dbInfo.setType(this.dbTypeCcomboBox.getSelectedItem().toString());
+        dbInfo.setIp(this.ipTextField.getText());
+        dbInfo.setPort(Integer.parseInt(this.portTextField.getText()));
+        dbInfo.setDbName(this.dbNameTextField.getText());
+        dbInfo.setUserName(this.userNameTextField.getText());
+        dbInfo.setPassword(this.passwordTextField.getText());
+
+        return dbInfo;
+    }
 
 }
