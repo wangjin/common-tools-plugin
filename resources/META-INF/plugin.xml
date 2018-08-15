@@ -6,7 +6,11 @@
     </vendor>
 
     <description><![CDATA[
-      生成Spring Data Jpa对应Repository类
+      通用工具<br/>
+      <ul>
+        <li>代码生成</li>
+        <li>其他</li>
+      </ul>
     ]]></description>
 
     <change-notes><![CDATA[
@@ -29,19 +33,29 @@
 
 
     <actions>
-        <group id="commontools.group" text="Common Tools" popup="true">
+       <group id="commontools.group" text="Common Tools" popup="true">
             <add-to-group group-id="ProjectViewPopupMenu" relative-to-action="CutCopyPasteGroup" anchor="before"/>
             <action id="commontools.RepositoryGenerator"
                     class="com.github.wangjin252.commontools.RepositoryGeneratorAction"
                     text="Repository Generator" description="Generator for Spring Data JPA Repository">
             </action>
+
+           <action id="commontools.CodeGenerator111" class="com.github.wangjin252.commontools.action.CodeGeneratorAction"
+                   text="代码生成" description="代码生成">
+           </action>
+
         </group>
 
-        <action id="commontools.OldCodeGenerator" class="com.github.wangjin252.commontools.action.OldCodeGeneratorAction"
+        <action id="commontools.OldCodeGenerator"
+                class="com.github.wangjin252.commontools.action.OldCodeGeneratorAction"
                 text="Generate Code" description="CodeGenerator">
             <add-to-group group-id="ToolsMenu" anchor="last"/>
         </action>
 
+        <action id="commontools.CodeGenerator" class="com.github.wangjin252.commontools.action.CodeGeneratorAction"
+                text="代码生成" description="代码生成">
+            <add-to-group group-id="CodeMenu" anchor="first"/>
+        </action>
     </actions>
 
 </idea-plugin>
