@@ -105,12 +105,20 @@ public class DBSettingsForm extends JPanel {
     private JTextField passwordTextField;
     // JFormDesigner - End of variables declaration  //GEN-END:variables
 
+    public void initValues(DBInfo dbInfo) {
+        this.dbTypeCcomboBox.setSelectedItem(dbInfo.getType());
+        this.ipTextField.setText(dbInfo.getIp());
+        this.portTextField.setText(String.valueOf(dbInfo.getPort()));
+        this.dbNameTextField.setText(dbInfo.getDbName());
+        this.userNameTextField.setText(dbInfo.getUserName());
+        this.passwordTextField.setText(dbInfo.getPassword());
+    }
 
     public DBInfo getInputDBInfo() {
         DBInfo dbInfo = new DBInfo();
         dbInfo.setType(this.dbTypeCcomboBox.getSelectedItem().toString());
         dbInfo.setIp(this.ipTextField.getText());
-        dbInfo.setPort(Integer.parseInt(this.portTextField.getText()));
+        dbInfo.setPort(this.portTextField.getText());
         dbInfo.setDbName(this.dbNameTextField.getText());
         dbInfo.setUserName(this.userNameTextField.getText());
         dbInfo.setPassword(this.passwordTextField.getText());

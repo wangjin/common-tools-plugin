@@ -12,10 +12,10 @@ public class PersistentUtil {
         this.project = project;
     }
 
-    public void setDBSettings(String ip, int port, String dbName, String userName, String password) {
+    public void setDBSettings(String ip, String port, String dbName, String userName, String password) {
         PropertiesComponent instance = PropertiesComponent.getInstance(project);
         instance.setValue("ip", ip);
-        instance.setValue("port", String.valueOf(port));
+        instance.setValue("port", port);
         instance.setValue("dbName", dbName);
         instance.setValue("userName", userName);
         instance.setValue("password", password);
@@ -29,7 +29,7 @@ public class PersistentUtil {
         DBInfo dbInfo = new DBInfo();
         PropertiesComponent instance = PropertiesComponent.getInstance(project);
         dbInfo.setIp(instance.getValue("ip"));
-        dbInfo.setPort(Integer.parseInt(instance.getValue("port")));
+        dbInfo.setPort(instance.getValue("port"));
         dbInfo.setDbName(instance.getValue("dbName"));
         dbInfo.setUserName(instance.getValue("userName"));
         dbInfo.setPassword(instance.getValue("password"));

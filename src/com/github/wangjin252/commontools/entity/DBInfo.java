@@ -8,7 +8,7 @@ public class DBInfo implements Serializable {
 
     private String ip;
 
-    private int port;
+    private String port;
 
     private String dbName;
 
@@ -32,11 +32,11 @@ public class DBInfo implements Serializable {
         this.ip = ip;
     }
 
-    public int getPort() {
+    public String getPort() {
         return port;
     }
 
-    public void setPort(int port) {
+    public void setPort(String port) {
         this.port = port;
     }
 
