@@ -5,7 +5,7 @@ new FormModel {
 	root: new FormRoot {
 		add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
 			"$horizontalGroup": "par l {seq {space :::p, par l {comp scrollPane1:::::x, comp panel3:::::x}, space :::p}}"
-			"$verticalGroup": "par l {seq l {space :::p, comp scrollPane1:::p:176:p, space :::p, comp panel3:::::x, space :::p}}"
+			"$verticalGroup": "par l {seq l {space :::p, comp scrollPane1:::p:200:p, space :::p, comp panel3:::::x, space :::p}}"
 		} ) {
 			name: "this"
 			add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
@@ -15,7 +15,7 @@ new FormModel {
 				} )
 			} )
 			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-				"$horizontalGroup": "par l {seq {space :::p, par l {seq {comp label10:::p:70:p, space u:::p, comp repositoryPackage:::p:160:p, space :p:12:p, comp label11:::p:70:p, space ::12:x, comp entityPackage:::p:160:p}, seq {par l {comp label8:::p:70:p, comp label7::t:p::p}, space u:::p, par l {comp basePackage::::414:x, seq l {comp controllerPackage:::p:160:p, space ::12:x, comp label9:::p:70:p, space u:::p, comp servicePackage:::p:160:p}}}}, space :::p}}"
+				"$horizontalGroup": "par l {seq {space :::p, par l {seq {comp label10:::p:70:p, space u:::p, comp repositoryPackage:::p:160:p, space :p:12:p, comp label11:::p:70:p, space ::17:x, comp entityPackage:::p:160:p}, seq {par l {comp label8:::p:70:p, comp label7::t:p::p}, space u:::p, par l {comp basePackage::::419:x, seq l {comp controllerPackage:::p:160:p, space ::17:x, comp label9:::p:70:p, space u:::p, comp servicePackage:::p:160:p}}}}, space :::p}}"
 				"$verticalGroup": "par l {seq {space :27:27:p, par b {comp basePackage::b:p::p, comp label7::b:p::p}, space u:::p, par b {comp label8::b:p::p, comp servicePackage::b:p::p, comp label9::b:p::p, comp controllerPackage::b:p::p}, space :p:11:p, par b {comp label10::b:p::p, comp label11::b:p::p, comp entityPackage::b:p::p, comp repositoryPackage::b:p::p}, space :p:11:p}}"
 			} ) {
 				name: "panel3"
@@ -66,7 +66,7 @@ new FormModel {
 			} )
 		}, new FormLayoutConstraints( null ) {
 			"location": new java.awt.Point( 0, 0 )
-			"size": new java.awt.Dimension( 520, 350 )
+			"size": new java.awt.Dimension( 525, 365 )
 		} )
 	}
 }

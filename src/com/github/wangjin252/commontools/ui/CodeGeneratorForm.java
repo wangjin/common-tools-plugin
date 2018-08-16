@@ -4,9 +4,11 @@
 
 package com.github.wangjin252.commontools.ui;
 
+import com.github.wangjin252.commontools.entity.PackageInfo;
 import com.github.wangjin252.commontools.entity.Pom;
 import com.github.wangjin252.commontools.entity.Table;
 import com.github.wangjin252.commontools.util.PomUtil;
+import com.github.wangjin252.commontools.util.StringUtil;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -92,7 +94,7 @@ public class CodeGeneratorForm extends JPanel {
                                 .addComponent(repositoryPackage, GroupLayout.PREFERRED_SIZE, 160, GroupLayout.PREFERRED_SIZE)
                                 .addGap(12, 12, 12)
                                 .addComponent(label11, GroupLayout.PREFERRED_SIZE, 70, GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
+                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
                                 .addComponent(entityPackage, GroupLayout.PREFERRED_SIZE, 160, GroupLayout.PREFERRED_SIZE))
                             .addGroup(panel3Layout.createSequentialGroup()
                                 .addGroup(panel3Layout.createParallelGroup()
@@ -100,10 +102,10 @@ public class CodeGeneratorForm extends JPanel {
                                     .addComponent(label7, GroupLayout.Alignment.TRAILING))
                                 .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(panel3Layout.createParallelGroup()
-                                    .addComponent(basePackage, GroupLayout.DEFAULT_SIZE, 414, Short.MAX_VALUE)
+                                    .addComponent(basePackage, GroupLayout.DEFAULT_SIZE, 419, Short.MAX_VALUE)
                                     .addGroup(panel3Layout.createSequentialGroup()
                                         .addComponent(controllerPackage, GroupLayout.PREFERRED_SIZE, 160, GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
+                                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
                                         .addComponent(label9, GroupLayout.PREFERRED_SIZE, 70, GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addComponent(servicePackage, GroupLayout.PREFERRED_SIZE, 160, GroupLayout.PREFERRED_SIZE)))))
@@ -147,7 +149,7 @@ public class CodeGeneratorForm extends JPanel {
             layout.createParallelGroup()
                 .addGroup(layout.createSequentialGroup()
                     .addContainerGap()
-                    .addComponent(scrollPane1, GroupLayout.PREFERRED_SIZE, 176, GroupLayout.PREFERRED_SIZE)
+                    .addComponent(scrollPane1, GroupLayout.PREFERRED_SIZE, 200, GroupLayout.PREFERRED_SIZE)
                     .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                     .addComponent(panel3, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addContainerGap())
@@ -189,21 +191,39 @@ public class CodeGeneratorForm extends JPanel {
     public void initTable(List<Table> tableList) {
 
         Vector<String> columnVector = new Vector<>();
-        columnVector.add("选择");
+        // columnVector.add("选择");
         columnVector.add("表名");
+        columnVector.add("实体名");
 
-        Vector<Vector<String>> dataVector = new Vector<>();
+        Vector<Vector<Object>> dataVector = new Vector<>();
 
         for (Table table : tableList) {
-            Vector<String> tableVector = new Vector<>();
-            tableVector.add("");
+            Vector<Object> tableVector = new Vector<>();
+            // tableVector.add("");
             tableVector.add(table.getName());
+            tableVector.add(StringUtil.snakeToCamel(table.getName()));
             dataVector.add(tableVector);
         }
 
 
         DefaultTableModel defaultTableModel = new DefaultTableModel(dataVector, columnVector);
 
+        this.entityTable.setEnabled(true);
         this.entityTable.setModel(defaultTableModel);
+
+        // TableColumnModel columnModel = this.entityTable.getColumnModel();
+        // columnModel.getColumn(0).setCellEditor(new DefaultCellEditor(new JCheckBox()));
+
+    }
+
+    public PackageInfo getPackageInfo() {
+        PackageInfo packageInfo = new PackageInfo();
+        packageInfo.setBasePackage(basePackage.getText());
+        packageInfo.setControllerPackage(controllerPackage.getText());
+        packageInfo.setServicePackage(servicePackage.getText());
+        packageInfo.setRepositoryPackage(repositoryPackage.getText());
+        packageInfo.setEntityPackage(entityPackage.getText());
+
+        return packageInfo;
     }
 }
