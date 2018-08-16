@@ -1,4 +1,4 @@
-package ${packageName};
+package ${packageInfo.basePackage}.${packageInfo.repositoryPackage};
 
 import org.springframework.stereotype.Repository;
 import org.springframework.data.jpa.repository.JpaRepository;
