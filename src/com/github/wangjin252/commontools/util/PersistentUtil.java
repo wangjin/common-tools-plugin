@@ -1,5 +1,6 @@
 package com.github.wangjin252.commontools.util;
 
+import com.github.wangjin252.commontools.entity.DBInfo;
 import com.intellij.ide.util.PropertiesComponent;
 import com.intellij.openapi.project.Project;
 
@@ -20,15 +21,19 @@ public class PersistentUtil {
         instance.setValue("password", password);
     }
 
-    public String[] getDBSettings(){
-        String[] settings = new String[5];
-        PropertiesComponent instance = PropertiesComponent.getInstance(project);
-        settings[0] = instance.getValue("ip");
-        settings[1] = instance.getValue("port");
-        settings[2] = instance.getValue("dbName");
-        settings[3] = instance.getValue("userName");
-        settings[4] = instance.getValue("password");
+    public void setDBSettings(DBInfo dbInfo) {
+        this.setDBSettings(dbInfo.getIp(), dbInfo.getPort(), dbInfo.getDbName(), dbInfo.getUserName(), dbInfo.getPassword());
+    }
 
-        return settings;
+    public DBInfo getDBSettings() {
+        DBInfo dbInfo = new DBInfo();
+        PropertiesComponent instance = PropertiesComponent.getInstance(project);
+        dbInfo.setIp(instance.getValue("ip"));
+        dbInfo.setPort(Integer.parseInt(instance.getValue("port")));
+        dbInfo.setDbName(instance.getValue("dbName"));
+        dbInfo.setUserName(instance.getValue("userName"));
+        dbInfo.setPassword(instance.getValue("password"));
+
+        return dbInfo;
     }
 }
