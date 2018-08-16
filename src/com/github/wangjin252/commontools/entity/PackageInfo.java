@@ -4,7 +4,7 @@ public class PackageInfo {
 
     private String basePackage;
 
-    private String controllerPackge;
+    private String controllerPackage;
 
     private String servicePackage;
 
@@ -20,12 +20,12 @@ public class PackageInfo {
         this.basePackage = basePackage;
     }
 
-    public String getControllerPackge() {
-        return controllerPackge;
+    public String getControllerPackage() {
+        return controllerPackage;
     }
 
-    public void setControllerPackge(String controllerPackge) {
-        this.controllerPackge = controllerPackge;
+    public void setControllerPackage(String controllerPackage) {
+        this.controllerPackage = controllerPackage;
     }
 
     public String getServicePackage() {
