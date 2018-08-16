@@ -1,4 +1,4 @@
-package com.github.wangjin252.commontools.service;
+package com.github.wangjin252.commontools.util;
 
 import com.github.wangjin252.commontools.entity.Column;
 import com.github.wangjin252.commontools.entity.DBInfo;
@@ -8,7 +8,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DBService {
+public class DBUtil {
 
 
     public static Connection getConnection(String ip, int port, String dbName, String userName, String password) throws ClassNotFoundException, SQLException {

@@ -1,4 +1,4 @@
-package com.github.wangjin252.commontools.service;
+package com.github.wangjin252.commontools.util;
 
 import com.intellij.ide.util.PropertiesComponent;
 import com.intellij.openapi.project.Project;

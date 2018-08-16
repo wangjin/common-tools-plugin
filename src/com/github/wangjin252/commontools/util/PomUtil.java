@@ -1,4 +1,4 @@
-package com.github.wangjin252.commontools.service;
+package com.github.wangjin252.commontools.util;
 
 import com.github.wangjin252.commontools.entity.Pom;
 import org.xml.sax.InputSource;
@@ -11,7 +11,7 @@ import javax.xml.transform.sax.SAXSource;
 import java.io.File;
 import java.io.FileInputStream;
 
-public class PomService {
+public class PomUtil {
 
 
     public static Pom parse(String pomPath) throws Exception {
