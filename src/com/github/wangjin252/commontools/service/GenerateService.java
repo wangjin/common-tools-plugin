@@ -1,5 +1,9 @@
 package com.github.wangjin252.commontools.service;
 
+import com.github.wangjin252.commontools.entity.PackageInfo;
+import com.github.wangjin252.commontools.entity.Table;
+import com.github.wangjin252.commontools.util.ModelNameFreemakerMethodEx;
+import com.github.wangjin252.commontools.util.StringUtil;
 import freemarker.cache.ClassTemplateLoader;
 import freemarker.template.Configuration;
 import freemarker.template.Template;
@@ -8,44 +12,52 @@ import freemarker.template.TemplateException;
 import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class GenerateService {
 
     private Configuration cfg = new Configuration(Configuration.VERSION_2_3_28);
-    private String basePath;
-    private String basePackage;
-    private String modelName;
 
-    public GenerateService(String basePath, String basePackage, String modelName) {
-        this.basePath = basePath;
-        this.basePackage = basePackage;
-        this.modelName = modelName;
-    }
-
-    public void generate(String outputFolder, String templateName) throws Exception {
-
-        Map<String, String> classProperties = new HashMap<>();
-        classProperties.put("packageName", basePackage + "." + outputFolder);
-        classProperties.put("basePackage", basePackage);
-        classProperties.put("modelName", modelName);
-
-        render(outputFolder, classProperties, templateName + ".ftl", templateName.toUpperCase().charAt(0) + templateName.substring(1));
-    }
-
-    private void render(String outputFolder, Map<String, String> classProperties, String templateName, String fileSubfix) throws IOException, TemplateException {
-
+    public GenerateService() {
         cfg.setTemplateLoader(new ClassTemplateLoader(GenerateService.class, "/templates"));
-        Template template = cfg.getTemplate(templateName);
+        cfg.setSharedVariable("lowerFirstLetter", new ModelNameFreemakerMethodEx());
+        // cfg.setCustomAttribute("lowerFirstLetter", new ModelNameFreemakerMethodEx());
+    }
+
+    public void generate(String basePath, PackageInfo packageInfo, List<Table> tables) throws Exception {
 
 
-        File file = new File(basePath + "/" + outputFolder);
-        if (!file.exists()) {
-            file.mkdirs();
+        Map<String, Object> classProperties = new HashMap<>();
+        classProperties.put("packageInfo", packageInfo);
+
+        for (Table table : tables) {
+            classProperties.put("modelName", StringUtil.snakeToCamel(table.getName()));
+            classProperties.put("columnList", table.getColumns());
+
+            render(classProperties, "controller", basePath + "/src/main/java/" + StringUtil.packgeToPath(packageInfo.getBasePackage()) + "/" + packageInfo.getControllerPackage(), "Controller", "java");
+            render(classProperties, "service", basePath + "/src/main/java/" + StringUtil.packgeToPath(packageInfo.getBasePackage()) + "/" + packageInfo.getServicePackage(), "Service", "java");
+            render(classProperties, "repository", basePath + "/src/main/java/" + StringUtil.packgeToPath(packageInfo.getBasePackage()) + "/" + packageInfo.getRepositoryPackage(), "Repository", "java");
+
         }
-        String outputFile = modelName + fileSubfix + ".java";
 
-        Writer out = new OutputStreamWriter(new FileOutputStream(basePath + "/" + outputFolder + "/" + outputFile), StandardCharsets.UTF_8);
-        template.process(classProperties, out);
+    }
+
+    private void render(Map<String, Object> classProperties, String templateName, String outputPath, String fileSubfix, String fileExtension) throws IOException, TemplateException {
+
+        Template template = cfg.getTemplate(templateName + ".ftl");
+
+        File file = new File(outputPath);
+        if (!file.exists()) {
+            if (file.mkdirs()) {
+                String outputFileName = classProperties.get("modelName") + fileSubfix + "." + fileExtension;
+
+                Writer out = new OutputStreamWriter(new FileOutputStream(outputPath + "/" + outputFileName), StandardCharsets.UTF_8);
+                template.process(classProperties, out);
+
+                out.flush();
+                out.close();
+            }
+        }
     }
 }
