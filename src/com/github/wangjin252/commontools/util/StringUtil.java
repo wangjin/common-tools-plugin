@@ -16,6 +16,13 @@ public class StringUtil {
         }
 
         return stringBuilder.toString();
+    }
 
+    public static String firstLetterLower(String string) {
+        return string.substring(0, 1).toLowerCase() + string.substring(1);
+    }
+
+    public static String packgeToPath(String packageName) {
+        return packageName.replaceAll("\\.", "/");
     }
 }
