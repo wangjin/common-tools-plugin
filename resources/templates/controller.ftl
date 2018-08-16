@@ -1,8 +1,8 @@
-package ${basePackage}.web;
+package ${packageInfo.basePackage}.${packageInfo.controllerPackage};
 
-import ${basePackage}.domain.PageModel;
-import ${basePackage}.domain.${modelName};
-import ${basePackage}.service.${modelName}Service;
+import ${packageInfo.basePackage}.${packageInfo.entityPackage}.PageModel;
+import ${packageInfo.basePackage}.${packageInfo.entityPackage}.${modelName};
+import ${packageInfo.basePackage}.${packageInfo.servicePackage}.${modelName}Service;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -17,12 +17,12 @@ import java.util.List;
  * @version 1.0
  */
 @Controller
-@RequestMapping(value = "/${modelName?lower_case}")
+@RequestMapping(value = "/${lowerFirstLetter(modelName)}")
 @Slf4j
 public class ${modelName}Controller {
 
     @Autowired
-    private ${modelName}Service ${modelName?lower_case}Service;
+    private ${modelName}Service ${lowerFirstLetter(modelName)}Service;
 
     /**
      * 列表页
@@ -31,7 +31,7 @@ public class ${modelName}Controller {
      */
     @GetMapping(value = "/page")
     public String listPage() {
-        return "${modelName?lower_case}";
+        return "${lowerFirstLetter(modelName)}";
     }
 
     /**
@@ -44,7 +44,7 @@ public class ${modelName}Controller {
     @GetMapping(value = "/pageData")
     @ResponseBody
     public PageModel<${modelName}> pageData(int page, int limit) {
-        return ${modelName?lower_case}Service.findPage(page, limit);
+        return ${lowerFirstLetter(modelName)}Service.findPage(page, limit);
     }
 
     /**
@@ -55,43 +55,45 @@ public class ${modelName}Controller {
     @GetMapping
     @ResponseBody
     public List<${modelName}> listData() {
-        return ${modelName?lower_case}Service.findList();
+        return ${lowerFirstLetter(modelName)}Service.findList();
     }
 
     /**
      * 添加
      *
-     * @param ${modelName?lower_case} entity
+     * @param ${lowerFirstLetter(modelName)} entity
      * @return ResponseEntity<${modelName}>
      */
     @PostMapping
-    public ResponseEntity<${modelName}> add(@RequestBody ${modelName} ${modelName?lower_case}) {
+    @ResponseBody
+    public ResponseEntity<${modelName}> add(@RequestBody ${modelName} ${lowerFirstLetter(modelName)}) {
         try {
-            ${modelName?lower_case} = ${modelName?lower_case}Service.saveOrUpdate(${modelName?lower_case});
+            ${lowerFirstLetter(modelName)} = ${lowerFirstLetter(modelName)}Service.saveOrUpdate(${lowerFirstLetter(modelName)});
         } catch (Exception e) {
             log.error("保存${modelName}失败", e);
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
 
-        return new ResponseEntity<>(${modelName?lower_case}, HttpStatus.OK);
+        return new ResponseEntity<>(${lowerFirstLetter(modelName)}, HttpStatus.OK);
     }
 
     /**
      * 修改
      *
-     * @param ${modelName?lower_case} entity
+     * @param ${lowerFirstLetter(modelName)} entity
      * @return ResponseEntity<${modelName}>
      */
     @PutMapping
-    public ResponseEntity<${modelName}> edit(@RequestBody ${modelName} ${modelName?lower_case}) {
+    @ResponseBody
+    public ResponseEntity<${modelName}> edit(@RequestBody ${modelName} ${lowerFirstLetter(modelName)}) {
         try {
-            ${modelName?lower_case} = ${modelName?lower_case}Service.saveOrUpdate(${modelName?lower_case});
+            ${lowerFirstLetter(modelName)} = ${lowerFirstLetter(modelName)}Service.saveOrUpdate(${lowerFirstLetter(modelName)});
         } catch (Exception e) {
             log.error("修改${modelName}失败", e);
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
 
-        return new ResponseEntity<>(${modelName?lower_case}, HttpStatus.OK);
+        return new ResponseEntity<>(${lowerFirstLetter(modelName)}, HttpStatus.OK);
     }
 
     /**
@@ -101,11 +103,12 @@ public class ${modelName}Controller {
      * @return ResponseEntity<${modelName}>
      */
     @DeleteMapping(value = "/{id}")
+    @ResponseBody
     public ResponseEntity<${modelName}> del(@PathVariable(value = "id") Integer id) {
         try {
-            ${modelName} ${modelName?lower_case} = ${modelName?lower_case}Service.findById(id);
-            if (${modelName?lower_case} != null) {
-                ${modelName?lower_case}Service.del(${modelName?lower_case});
+            ${modelName} ${lowerFirstLetter(modelName)} = ${lowerFirstLetter(modelName)}Service.findById(id);
+            if (${lowerFirstLetter(modelName)} != null) {
+                ${lowerFirstLetter(modelName)}Service.del(${lowerFirstLetter(modelName)});
             } else {
                 log.warn("id=[{}]的${modelName}不存在", id);
                 return new ResponseEntity<>(HttpStatus.NOT_FOUND);

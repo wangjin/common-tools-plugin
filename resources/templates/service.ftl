@@ -1,9 +1,9 @@
-package ${basePackage}.service;
+package ${packageInfo.basePackage}.${packageInfo.servicePackage};
 
-import ${basePackage}.domain.PageModel;
-import ${basePackage}.domain.${modelName};
-import ${basePackage}.domain.${modelName}Repository;
-import ${basePackage}.util.PageUtil;
+import ${packageInfo.basePackage}.${packageInfo.entityPackage}.PageModel;
+import ${packageInfo.basePackage}.${packageInfo.entityPackage}.${modelName};
+import ${packageInfo.basePackage}.${packageInfo.repositoryPackage}.${modelName}Repository;
+import ${packageInfo.basePackage}.util.PageUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
@@ -19,27 +19,27 @@ import java.util.Optional;
 public class ${modelName}Service {
 
     @Autowired
-    private ${modelName}Repository ${modelName?lower_case}Repository;
+    private ${modelName}Repository ${lowerFirstLetter(modelName)}Repository;
 
 
     public PageModel<${modelName}> findPage(int page, int limit) {
-        return PageUtil.parsePage(${modelName?lower_case}Repository.findAll(PageRequest.of(page - 1, limit)));
+        return PageUtil.parsePage(${lowerFirstLetter(modelName)}Repository.findAll(PageRequest.of(page - 1, limit)));
     }
 
     public List<${modelName}> findList() {
-        return ${modelName?lower_case}Repository.findAll();
+        return ${lowerFirstLetter(modelName)}Repository.findAll();
     }
 
-    public ${modelName} saveOrUpdate(${modelName} ${modelName?lower_case}) {
-        return ${modelName?lower_case}Repository.save(${modelName?lower_case});
+    public ${modelName} saveOrUpdate(${modelName} ${lowerFirstLetter(modelName)}) {
+        return ${lowerFirstLetter(modelName)}Repository.save(${lowerFirstLetter(modelName)});
     }
 
     public ${modelName} findById(Integer id) {
-        Optional<${modelName}> optional = ${modelName?lower_case}Repository.findById(id);
+        Optional<${modelName}> optional = ${lowerFirstLetter(modelName)}Repository.findById(id);
         return optional.orElse(null);
     }
 
-    public void del(${modelName} ${modelName?lower_case}) {
-        ${modelName?lower_case}Repository.delete(${modelName?lower_case});
+    public void del(${modelName} ${lowerFirstLetter(modelName)}) {
+        ${lowerFirstLetter(modelName)}Repository.delete(${lowerFirstLetter(modelName)});
     }
 }

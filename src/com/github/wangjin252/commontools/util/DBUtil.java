@@ -1,19 +1,25 @@
-package com.github.wangjin252.commontools.service;
+package com.github.wangjin252.commontools.util;
 
 import com.github.wangjin252.commontools.entity.Column;
+import com.github.wangjin252.commontools.entity.DBInfo;
 import com.github.wangjin252.commontools.entity.Table;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DBService {
+public class DBUtil {
 
 
-    public static Connection getConnection(String ip, int port, String dbName, String userName, String password) throws ClassNotFoundException, SQLException {
+    public static Connection getConnection(String ip, String port, String dbName, String userName, String password) throws ClassNotFoundException, SQLException {
         Class.forName("com.mysql.jdbc.Driver");
-        String url = String.format("jdbc:mysql://%s:%d/%s?useUnicode=true&characterEncoding=UTF-8&useSSL=false&connectTimeout=60000&socketTimeout=60000&autoReconnect=true&autoReconnectForPools=true&failOverReadOnly=false", ip, port, dbName);
+        String url = String.format("jdbc:mysql://%s:%s/%s?useUnicode=true&characterEncoding=UTF-8&useSSL=false&connectTimeout=60000&socketTimeout=60000&autoReconnect=true&autoReconnectForPools=true&failOverReadOnly=false", ip, port, dbName);
         return DriverManager.getConnection(url, userName, password);
+    }
+
+
+    public static Connection getConnection(DBInfo dbInfo) throws ClassNotFoundException, SQLException {
+        return getConnection(dbInfo.getIp(), dbInfo.getPort(), dbInfo.getDbName(), dbInfo.getUserName(), dbInfo.getPassword());
     }
 
     public static List<Table> getTables(Connection connection) throws SQLException {
